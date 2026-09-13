@@ -1,0 +1,350 @@
+{
+  "name": "RM Opportunity Copilot",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "id": "cc3d595a-5b04-4068-a998-0faa075187fa",
+      "name": "Every Morning",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1760,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const clients = [\n  {client_id:\"C001\",client_name:\"Anil Mehra\",portfolio_value_inr:45000000,top_holding_pct:68,fd_maturity_date:\"2026-10-02\",portfolio_return_1y_pct:8.2,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:52},\n  {client_id:\"C002\",client_name:\"Sunita Rao\",portfolio_value_inr:120000000,top_holding_pct:22,fd_maturity_date:\"2027-03-15\",portfolio_return_1y_pct:15.1,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"TRUE\",last_contact_days_ago:10},\n  {client_id:\"C003\",client_name:\"Vikram Shah\",portfolio_value_inr:32000000,top_holding_pct:55,fd_maturity_date:\"2026-09-28\",portfolio_return_1y_pct:6.5,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:90},\n  {client_id:\"C004\",client_name:\"Priya Nair\",portfolio_value_inr:80000000,top_holding_pct:15,fd_maturity_date:\"2027-06-01\",portfolio_return_1y_pct:16.2,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"TRUE\",last_contact_days_ago:20},\n  {client_id:\"C005\",client_name:\"Rajesh Kumar\",portfolio_value_inr:25000000,top_holding_pct:72,fd_maturity_date:\"2026-10-10\",portfolio_return_1y_pct:5.8,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"FALSE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:120},\n  {client_id:\"C006\",client_name:\"Meera Iyer\",portfolio_value_inr:60000000,top_holding_pct:30,fd_maturity_date:\"2026-09-25\",portfolio_return_1y_pct:13.9,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:35},\n  {client_id:\"C007\",client_name:\"Arjun Kapoor\",portfolio_value_inr:95000000,top_holding_pct:18,fd_maturity_date:\"2027-01-20\",portfolio_return_1y_pct:17.0,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"TRUE\",last_contact_days_ago:15},\n  {client_id:\"C008\",client_name:\"Deepa Menon\",portfolio_value_inr:15000000,top_holding_pct:45,fd_maturity_date:\"2026-10-05\",portfolio_return_1y_pct:7.1,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"FALSE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:60},\n  {client_id:\"C009\",client_name:\"Karan Malhotra\",portfolio_value_inr:150000000,top_holding_pct:60,fd_maturity_date:\"2026-09-30\",portfolio_return_1y_pct:9.4,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:75},\n  {client_id:\"C010\",client_name:\"Ritu Bhatia\",portfolio_value_inr:40000000,top_holding_pct:25,fd_maturity_date:\"2027-02-14\",portfolio_return_1y_pct:14.8,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"TRUE\",last_contact_days_ago:8},\n  {client_id:\"C011\",client_name:\"Sanjay Gupta\",portfolio_value_inr:28000000,top_holding_pct:80,fd_maturity_date:\"2026-10-08\",portfolio_return_1y_pct:4.2,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"FALSE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:100},\n  {client_id:\"C012\",client_name:\"Nisha Reddy\",portfolio_value_inr:70000000,top_holding_pct:20,fd_maturity_date:\"2027-04-10\",portfolio_return_1y_pct:15.9,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"TRUE\",last_contact_days_ago:25},\n  {client_id:\"C013\",client_name:\"Manoj Tiwari\",portfolio_value_inr:50000000,top_holding_pct:65,fd_maturity_date:\"2026-09-27\",portfolio_return_1y_pct:6.9,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:110},\n  {client_id:\"C014\",client_name:\"Kavita Joshi\",portfolio_value_inr:110000000,top_holding_pct:28,fd_maturity_date:\"2027-05-05\",portfolio_return_1y_pct:16.5,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"TRUE\",last_contact_days_ago:12},\n  {client_id:\"C015\",client_name:\"Rahul Verma\",portfolio_value_inr:20000000,top_holding_pct:58,fd_maturity_date:\"2026-10-12\",portfolio_return_1y_pct:5.5,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"FALSE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:80},\n  {client_id:\"C016\",client_name:\"Anjali Desai\",portfolio_value_inr:65000000,top_holding_pct:35,fd_maturity_date:\"2026-09-29\",portfolio_return_1y_pct:12.1,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:45},\n  {client_id:\"C017\",client_name:\"Suresh Pillai\",portfolio_value_inr:85000000,top_holding_pct:19,fd_maturity_date:\"2027-07-01\",portfolio_return_1y_pct:17.3,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"TRUE\",last_contact_days_ago:18},\n  {client_id:\"C018\",client_name:\"Neha Chopra\",portfolio_value_inr:30000000,top_holding_pct:70,fd_maturity_date:\"2026-10-15\",portfolio_return_1y_pct:4.9,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"FALSE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:95},\n  {client_id:\"C019\",client_name:\"Amitabh Sen\",portfolio_value_inr:140000000,top_holding_pct:24,fd_maturity_date:\"2027-03-22\",portfolio_return_1y_pct:15.5,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"TRUE\",pms_aif_invested:\"TRUE\",last_contact_days_ago:5},\n  {client_id:\"C020\",client_name:\"Pooja Agarwal\",portfolio_value_inr:22000000,top_holding_pct:62,fd_maturity_date:\"2026-10-03\",portfolio_return_1y_pct:6.0,benchmark_return_1y_pct:14.5,pms_aif_eligible:\"FALSE\",pms_aif_invested:\"FALSE\",last_contact_days_ago:105}\n];\n\nreturn clients.map(c => ({ json: c }));"
+      },
+      "id": "d6acf7f4-4fed-4712-a670-4b0ff6d0e3ec",
+      "name": "Load Mock Clients",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1408,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Score each client on \"opportunity to act now\"\n// Deterministic scoring so it's cheap and explainable - no LLM call needed here.\n\nconst today = new Date();\n\nfunction daysUntil(dateStr) {\n  const d = new Date(dateStr);\n  return Math.ceil((d - today) / (1000 * 60 * 60 * 24));\n}\n\nreturn items.map(item => {\n  const c = item.json;\n\n  let score = 0;\n  const reasons = [];\n\n  // 1. Concentration risk\n  const conc = parseFloat(c.top_holding_pct);\n  if (conc >= 60) { score += 30; reasons.push(`High concentration risk: ${conc}% in a single holding`); }\n  else if (conc >= 40) { score += 15; reasons.push(`Moderate concentration: ${conc}% in top holding`); }\n\n  // 2. FD maturity within next 30 days = idle cash opportunity\n  const daysToMaturity = daysUntil(c.fd_maturity_date);\n  if (daysToMaturity >= 0 && daysToMaturity <= 30) {\n    score += 25;\n    reasons.push(`FD maturing in ${daysToMaturity} days - reinvestment conversation needed`);\n  }\n\n  // 3. Underperformance vs benchmark\n  const gap = parseFloat(c.benchmark_return_1y_pct) - parseFloat(c.portfolio_return_1y_pct);\n  if (gap >= 5) { score += 25; reasons.push(`Underperforming benchmark by ${gap.toFixed(1)}%`); }\n  else if (gap >= 2) { score += 10; reasons.push(`Slightly trailing benchmark by ${gap.toFixed(1)}%`); }\n\n  // 4. Unused PMS/AIF eligibility\n  if (c.pms_aif_eligible === 'TRUE' && c.pms_aif_invested === 'FALSE') {\n    score += 15;\n    reasons.push('Eligible for PMS/AIF but not yet invested');\n  }\n\n  // 5. Stale relationship\n  const daysSinceContact = parseInt(c.last_contact_days_ago, 10);\n  if (daysSinceContact >= 90) { score += 15; reasons.push(`No contact in ${daysSinceContact} days`); }\n  else if (daysSinceContact >= 60) { score += 8; reasons.push(`Contact getting stale (${daysSinceContact} days)`); }\n\n  return {\n    json: {\n      client_id: c.client_id,\n      client_name: c.client_name,\n      portfolio_value_inr: c.portfolio_value_inr,\n      opportunity_score: score,\n      reasons\n    }\n  };\n});"
+      },
+      "id": "dbde7947-97fb-415e-ab59-ee39acf34aa3",
+      "name": "Score Opportunities",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1104,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Sort descending by score, keep only the top 5 - this is the deliberate\n// design choice: RMs don't need talking points for every client, only\n// the ones worth calling today.\nreturn items\n  .sort((a, b) => b.json.opportunity_score - a.json.opportunity_score)\n  .slice(0, 5);"
+      },
+      "id": "119d48c0-ba3c-451b-845d-3947edf38a02",
+      "name": "Top 5 Clients",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -880,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "ceb7c682-283a-4809-ab2a-54fa6f6bf107",
+      "name": "Combine Into Daily Briefing",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const clients = $input.first().json.data;\n\n// Format raw rupee numbers into readable Cr/Lakh\nfunction formatINR(value) {\n  const num = parseFloat(value);\n  if (num >= 10000000) return `₹${(num / 10000000).toFixed(2)} Cr`;\n  if (num >= 100000) return `₹${(num / 100000).toFixed(1)} L`;\n  return `₹${num.toLocaleString('en-IN')}`;\n}\n\n// Turn a raw score into a decision-ready priority label\nfunction getPriority(score) {\n  if (score >= 90) return { label: '🔴 Urgent', tier: 'Urgent' };\n  if (score >= 60) return { label: '🟡 Monitor', tier: 'Monitor' };\n  return { label: '🟢 Stable', tier: 'Stable' };\n}\n\n// Strip markdown bold/asterisks since this isn't rendered anywhere\nfunction cleanText(text) {\n  return (text || '').replace(/\\*\\*/g, '').trim();\n}\n\n// Structured version — clean columns for the Table view\nconst structured = clients.map((c, i) => {\n  const priority = getPriority(c.opportunity_score);\n  return {\n    rank: i + 1,\n    priority: priority.label,\n    client_name: c.client_name,\n    client_id: c.client_id,\n    portfolio_value: formatINR(c.portfolio_value_inr),\n    opportunity_score: c.opportunity_score,\n    top_reason: c.reasons[0],\n    all_reasons: c.reasons.join(' | '),\n    talking_points: cleanText(c.talking_points)\n  };\n});\n\n// Summary line — total AUM at risk, FD maturities, urgent count\nconst totalAUM = clients.reduce((sum, c) => sum + parseFloat(c.portfolio_value_inr), 0);\nconst fdCount = clients.filter(c => c.reasons.some(r => r.toLowerCase().includes('fd maturing'))).length;\nconst urgentCount = clients.filter(c => c.opportunity_score >= 90).length;\n\nconst summaryLine =\n  `${clients.length} clients flagged today | ${formatINR(totalAUM)} in AUM under review | ` +\n  `${urgentCount} urgent | ${fdCount} FD${fdCount === 1 ? '' : 's'} maturing this window`;\n\n// Formatted text version — headers, dividers, priority tags\nconst divider = '─'.repeat(48);\n\nconst formattedSections = clients.map((c, i) => {\n  const priority = getPriority(c.opportunity_score);\n  const reasonLines = c.reasons.map(r => `  • ${r}`).join('\\n');\n  return [\n    divider,\n    `#${i + 1}  ${priority.label}   ${c.client_name}   (${formatINR(c.portfolio_value_inr)} | Score: ${c.opportunity_score})`,\n    divider,\n    `Why call today:`,\n    reasonLines,\n    ``,\n    `Talking points:`,\n    cleanText(c.talking_points),\n    ``\n  ].join('\\n');\n});\n\nconst formatted_briefing =\n  `DAILY RM BRIEFING — ${new Date().toDateString()}\\n` +\n  `${summaryLine}\\n\\n` +\n  formattedSections.join('\\n');\n\nreturn [{\n  json: {\n    summary: summaryLine,\n    clients: structured,\n    formatted_briefing\n  }\n}];"
+      },
+      "id": "13222ede-19b5-4616-a8e5-1a06193f1adc",
+      "name": "Final Daily Briefing",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "groqApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "= { \"model\": \"openai/gpt-oss-20b\", \"messages\": [ {\"role\": \"system\", \"content\": \"You are an assistant to a wealth relationship manager. Given a client's opportunity reasons, write exactly 3 short, specific talking points the RM can use on today's call. Be concrete, not generic.\"}, {\"role\": \"user\", \"content\": \"Client: {{ $json.client_name }}. Portfolio value: INR {{ $json.portfolio_value_inr }}. Reasons flagged: {{ $json.reasons.join(', ') }}\"} ] }",
+        "options": {}
+      },
+      "id": "4de762b3-c907-467e-9c13-ce806c64bc4d",
+      "name": "Generate Talking Points (Groq - free tier)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -448,
+        112
+      ],
+      "credentials": {
+        "groqApi": {
+          "id": "VFr8TcDC0NrZfu3D",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// The input to this node is the Groq HTTP response for the current client.\n// Pull the generated talking points, then re-attach the original client fields\n// from the loop so downstream aggregation has everything it needs.\nconst response = $input.first().json;\nconst talkingPoints = response?.choices?.[0]?.message?.content || '';\nconst client = $('Loop Over Top Clients').item.json;\n\nreturn [{\n  json: {\n    client_id: client.client_id,\n    client_name: client.client_name,\n    portfolio_value_inr: client.portfolio_value_inr,\n    opportunity_score: client.opportunity_score,\n    reasons: client.reasons,\n    talking_points: talkingPoints\n  }\n}];"
+      },
+      "id": "5721fe7c-e6d9-430a-8134-42a4de59cc73",
+      "name": "Attach Talking Points",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -224,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "291f5bd9-359b-443b-a740-2412732f586b",
+      "name": "Loop Over Top Clients",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -656,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const { summary, clients } = $input.first().json;\n\nconst rows = clients.map(c => `\n  <tr>\n    <td>${c.rank}</td>\n    <td>${c.priority}</td>\n    <td>${c.client_name}</td>\n    <td>${c.portfolio_value}</td>\n    <td>${c.opportunity_score}</td>\n    <td>${c.top_reason}</td>\n  </tr>\n`).join('');\n\nconst detailSections = clients.map(c => `\n  <div class=\"client-block\">\n    <h3>#${c.rank} ${c.priority} — ${c.client_name} (${c.portfolio_value})</h3>\n    <p><strong>Why call today:</strong></p>\n    <ul>${c.all_reasons.split(' | ').map(r => `<li>${r}</li>`).join('')}</ul>\n    <p><strong>Talking points:</strong></p>\n    <p>${c.talking_points.replace(/\\n/g, '<br>')}</p>\n  </div>\n`).join('');\n\nconst html = `\n<html>\n<head>\n<style>\n  body { font-family: Arial, sans-serif; color: #222; padding: 20px; }\n  h1 { color: #1a3c6e; margin-bottom: 4px; }\n  .summary { background: #f0f4f8; padding: 12px; border-radius: 6px; margin-bottom: 20px; font-weight: bold; }\n  table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }\n  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; font-size: 13px; }\n  th { background: #1a3c6e; color: white; }\n  .client-block { border-top: 2px solid #eee; padding-top: 12px; margin-bottom: 20px; page-break-inside: avoid; }\n  h3 { color: #1a3c6e; }\n  li { margin-bottom: 6px; }\n</style>\n</head>\n<body>\n  <h1>Daily RM Briefing</h1>\n  <div class=\"summary\">${summary}</div>\n  <table>\n    <tr><th>#</th><th>Priority</th><th>Client</th><th>AUM</th><th>Score</th><th>Top Reason</th></tr>\n    ${rows}\n  </table>\n  <h2>Details</h2>\n  ${detailSections}\n</body>\n</html>`;\n\nreturn [{ json: { html } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "5e202523-65ab-4d3b-a497-d66078985f67",
+      "name": "Build Briefing HTMLt"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://pdfmunk.com/api/v1/generatePdf",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ html_content: $json.html, paper_size: \"A4\", output_format: \"base64\" }) }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        672,
+        0
+      ],
+      "id": "5ebd9bfd-7b1d-486e-b166-ee972ccf8949",
+      "name": "Convert to Pdf",
+      "notesInFlow": false,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "CgZ579G1lpjpQgVI",
+          "name": "Header Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "pdf_base64",
+        "options": {
+          "fileName": "daily_rm_briefing.pdf"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        896,
+        0
+      ],
+      "id": "032523e0-1c49-4709-8325-7ce03b16d676",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Every Morning": {
+      "main": [
+        [
+          {
+            "node": "Load Mock Clients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Mock Clients": {
+      "main": [
+        [
+          {
+            "node": "Score Opportunities",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Score Opportunities": {
+      "main": [
+        [
+          {
+            "node": "Top 5 Clients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Top 5 Clients": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Top Clients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine Into Daily Briefing": {
+      "main": [
+        [
+          {
+            "node": "Final Daily Briefing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Talking Points (Groq - free tier)": {
+      "main": [
+        [
+          {
+            "node": "Attach Talking Points",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attach Talking Points": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Top Clients",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Top Clients": {
+      "main": [
+        [
+          {
+            "node": "Combine Into Daily Briefing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Generate Talking Points (Groq - free tier)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Final Daily Briefing": {
+      "main": [
+        [
+          {
+            "node": "Build Briefing HTMLt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Briefing HTMLt": {
+      "main": [
+        [
+          {
+            "node": "Convert to Pdf",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to Pdf": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "5fa42e5b-b43e-4611-9298-a370280a0663",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1cb34075487ea9be624fa78a9ec6505005b5f6f5f49a7cf7b0d0470949230d91"
+  },
+  "nodeGroups": [],
+  "id": "5qn4jHkPrPrV1AsN",
+  "tags": []
+}
